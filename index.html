@@ -3,17 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Start Session</title>
+    <title>KubeLink - Start Session</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <center>
-        <button onclick="startSession()">Start Session</button>
-    </center>
+<body class="bg-light">
 
-    <script>
-        function startSession() {
-            window.location.href = "console.html";
-        }
-    </script>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <h1 class="display-4">KubeLink</h1>
+            <p class="lead">Start your Kubernetes session with ease.</p>
+            <button onclick="startSession()" class="btn btn-primary btn-lg">Start Session</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function startSession() {
+        window.location.href = "console.html";
+    }
+</script>
+
 </body>
 </html>
