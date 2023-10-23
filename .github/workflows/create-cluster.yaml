@@ -1,0 +1,23 @@
+name: Create Kind Cluster
+
+on:
+  repository_dispatch:
+    types: [create-cluster]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Kind
+      run: |
+        curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64
+        chmod +x ./kind
+        sudo mv kind /usr/local/bin/
+
+    - name: Create Kind Cluster
+      run: |
+        kind create cluster
