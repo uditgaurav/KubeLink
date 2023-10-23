@@ -98,9 +98,10 @@
         document.getElementById('loadingSpinner').style.display = 'block';
 
         // Make an AJAX request to trigger the GitHub Action
-        fetch('/triggerClusterCreation', {
+        fetch('http://34.123.163.92:5000/triggerClusterCreation', {
             method: 'POST'
         })
+
         .then(response => {
             if (!response.ok) {
                 return response.json().then(err => { throw err; });
