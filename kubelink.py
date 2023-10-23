@@ -3,6 +3,7 @@ import requests
 import os
 
 app = Flask(__name__)
+CORS(app)
 
 GITHUB_REPO = 'uditgaurav/KubeLink'
 TOKEN = os.environ.get('GITHUB_TOKEN')

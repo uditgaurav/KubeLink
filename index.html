@@ -103,7 +103,7 @@
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                return response.json().then(err => { throw err; });
             }
             return response.json();
         })
@@ -121,20 +121,22 @@
                     })
                     .catch(error => {
                         clearInterval(interval);
-                        showError();
+                        showError(error.message);
                     });
                 }, 5000);
             }
         })
         .catch(error => {
-            showError();
+            showError(error.message);
         });
     }
 
-    function showError() {
+    function showError(message) {
         document.getElementById('loadingSpinner').style.display = 'none';
+        document.getElementById('errorMessage').innerText = message;
         document.getElementById('errorMessage').style.display = 'block';
     }
+
 </script>
 
 </body>
