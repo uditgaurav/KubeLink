@@ -5,14 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KubeLink - Console</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(45deg, #6C5B7B, #C06C84, #F67280);
+            height: 100vh;
+            color: white;
+        }
+        textarea {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px;
+            resize: none;
+        }
+        textarea:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+    </style>
 </head>
-<body class="bg-light">
+<body>
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
         <div class="col-md-8">
             <h2 class="mb-4">Console</h2>
-            <textarea class="form-control" rows="10"></textarea>
+            <textarea rows="10" placeholder="Enter your commands here..."></textarea>
         </div>
     </div>
 </div>

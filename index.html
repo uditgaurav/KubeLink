@@ -5,14 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KubeLink - Start Session</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(45deg, #6C5B7B, #C06C84, #F67280);
+            height: 100vh;
+            color: white;
+        }
+        .btn-primary {
+            background-color: #355C7D;
+            border: none;
+            transition: transform 0.2s;
+        }
+        .btn-primary:hover {
+            transform: scale(1.1);
+            background-color: #2A2A72;
+        }
+    </style>
 </head>
-<body class="bg-light">
+<body>
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
         <div class="col-md-6 text-center">
-            <h1 class="display-4">KubeLink</h1>
-            <p class="lead">Start your Kubernetes session with ease.</p>
+            <h1 class="display-3 mb-4">KubeLink</h1>
+            <p class="lead mb-4">Start your Kubernetes session with ease.</p>
             <button onclick="startSession()" class="btn btn-primary btn-lg">Start Session</button>
         </div>
     </div>
