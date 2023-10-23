@@ -25,85 +25,20 @@
         }
         .card {
             margin-bottom: 20px;
-        }
-    </style>
-</head>
-<body>
-
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8 text-center mb-5">
-            <h1 class="display-3 mb-4">KubeLink</h1>
-            <p class="lead mb-4">Start your Kubernetes session with ease.</p>
-            <button onclick="startSession()" class="btn btn-primary btn-lg mb-5">Start Session</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Learning and Experimentation</h5>
-                    <p class="card-text">For individuals or teams looking to learn Kubernetes without setting up their infrastructure, this could be invaluable.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Testing</h5>
-                    <p class="card-text">Developers could use it to test their Kubernetes configurations or applications in an isolated environment.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Cost-Efficiency</h5>
-                    <p class="card-text">Users might not need to invest in infrastructure or cloud resources for short-term experiments.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    function startSession() {
-        window.location.href = "console.html";
-    }
-</script>
-
-</body>
-</html>
-
----
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KubeLink - Start Session</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f4f4f4;
-            height: 100vh;
-            color: #333;
-            font-family: 'Arial', sans-serif;
-        }
-        .btn-primary {
-            background-color: #2c3e50;
+            transition: transform 0.2s;
             border: none;
-            transition: transform 0.2s, background-color 0.2s;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .card-title {
             font-weight: bold;
-            color: #ecf0f1;
+            font-size: 1.5rem;
         }
-        .btn-primary:hover {
-            transform: scale(1.1);
-            background-color: #1a252f;
-        }
-        .card {
-            margin-bottom: 20px;
+        .card-text {
+            font-size: 1.1rem;
         }
         #loadingSpinner {
             display: none;
@@ -123,7 +58,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body text-center">
                     <h5 class="card-title">Learning and Experimentation</h5>
                     <p class="card-text">For individuals or teams looking to learn Kubernetes without setting up their infrastructure, this could be invaluable.</p>
                 </div>
@@ -131,7 +66,7 @@
         </div>
         <div class="col-md-4">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body text-center">
                     <h5 class="card-title">Testing</h5>
                     <p class="card-text">Developers could use it to test their Kubernetes configurations or applications in an isolated environment.</p>
                 </div>
@@ -139,7 +74,7 @@
         </div>
         <div class="col-md-4">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body text-center">
                     <h5 class="card-title">Cost-Efficiency</h5>
                     <p class="card-text">Users might not need to invest in infrastructure or cloud resources for short-term experiments.</p>
                 </div>
@@ -152,6 +87,9 @@
         </div>
         <p>Creating cluster, please wait...</p>
     </div>
+    <div id="errorMessage" class="text-center mt-5" style="display: none; color: red;">
+        <p>Server is currently overwhelmed due to high requests. Please try again later.</p>
+    </div>
 </div>
 
 <script>
@@ -163,7 +101,12 @@
         fetch('/triggerClusterCreation', {
             method: 'POST'
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
             if (data.status === 'in-progress') {
                 // Poll the backend for updates every 5 seconds
@@ -175,13 +118,22 @@
                             clearInterval(interval);
                             window.location.href = "console.html";
                         }
+                    })
+                    .catch(error => {
+                        clearInterval(interval);
+                        showError();
                     });
                 }, 5000);
             }
         })
         .catch(error => {
-            console.error("Error:", error);
+            showError();
         });
+    }
+
+    function showError() {
+        document.getElementById('loadingSpinner').style.display = 'none';
+        document.getElementById('errorMessage').style.display = 'block';
     }
 </script>
 
