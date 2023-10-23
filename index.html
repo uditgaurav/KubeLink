@@ -23,16 +23,45 @@
             transform: scale(1.1);
             background-color: #1a252f;
         }
+        .card {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
 
-<div class="container h-100">
-    <div class="row h-100 justify-content-center align-items-center">
-        <div class="col-md-6 text-center">
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center mb-5">
             <h1 class="display-3 mb-4">KubeLink</h1>
             <p class="lead mb-4">Start your Kubernetes session with ease.</p>
-            <button onclick="startSession()" class="btn btn-primary btn-lg">Start Session</button>
+            <button onclick="startSession()" class="btn btn-primary btn-lg mb-5">Start Session</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Learning and Experimentation</h5>
+                    <p class="card-text">For individuals or teams looking to learn Kubernetes without setting up their infrastructure, this could be invaluable.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Testing</h5>
+                    <p class="card-text">Developers could use it to test their Kubernetes configurations or applications in an isolated environment.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Cost-Efficiency</h5>
+                    <p class="card-text">Users might not need to invest in infrastructure or cloud resources for short-term experiments.</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
